@@ -55,7 +55,7 @@ tell application "System Events"
 		    return "Disonnected from " &amp; q
         else
             connect VPNservice
-			repeat while (current configuration of VPNservice is not connected)
+			repeat while (current configuration of VPNservice is not connected) --delay 1 second since connected
                     delay 1
              end repeat
 		    return "Connected to " &amp; q
