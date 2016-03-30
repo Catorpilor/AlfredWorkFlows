@@ -55,10 +55,13 @@ tell application "System Events"
 		    return "Disonnected from " &amp; q
         else
             connect VPNservice
-			repeat while (current configuration of VPNservice is not connected) --delay 1 second since connected
-                    delay 1
+		    repeat 30 times
+				if (current configuration of VPNservice is connected) then
+                    return "Connected to " &amp; q
+				end if
+				delay 1
              end repeat
-		    return "Connected to " &amp; q
+		    return "Failed to Connected to " &amp; q
         end if
     end tell
 end tell
@@ -107,6 +110,14 @@ end alfred_script</string>
 				<integer>63</integer>
 				<key>keyword</key>
 				<string>vpn</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>script</key>
 				<string># This workflow ships with artwork from Oxygen Icons.
 # For those icons applies the LGPLv3 licence, see
